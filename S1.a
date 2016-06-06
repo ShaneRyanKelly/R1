@@ -1,0 +1,62 @@
+; Shane Kelly    Wed Mar 30 18:07:55 2016
+; Output from R1 compiler
+;    x = +3 + -2 + 1;
+          !register
+          ld        @3
+          add       @_2
+          st        @t0
+          ld        @t0
+          add       @1
+          st        @t1
+          ld        @t1
+          st        x
+;    y = x;
+          ld        x
+          st        y
+;    z = x*(2 + y) + (((4099)));
+          ld        @2
+          add       y
+          st        @t2
+          ld        x
+          mult      @t2
+          st        @t3
+          ld        @t3
+          add       @4099
+          st        @t4
+          ld        @t4
+          st        z
+;    println(z + x + -2);
+          ld        z
+          add       x
+          st        @t5
+          ld        @t5
+          add       @_2
+          st        @t6
+          ld        @t6
+          dout
+          ldc '\n'
+          aout
+;    println(4107); 
+          ld        @4107
+          dout
+          ldc '\n'
+          aout
+          
+          halt
+
+x:        dw        0
+@3:       dw        3
+@_2:      dw        -2
+@t0:      dw        0
+@1:       dw        1
+@t1:      dw        0
+y:        dw        0
+z:        dw        0
+@2:       dw        2
+@t2:      dw        0
+@t3:      dw        0
+@4099:    dw        4099
+@t4:      dw        0
+@t5:      dw        0
+@t6:      dw        0
+@4107:    dw        4107
